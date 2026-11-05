@@ -1,0 +1,55 @@
+{
+  "manifest_version": 3,
+  "name": "Wiktionary Clean",
+  "version": "0.4.0",
+  "description": "A quiet reading view for en.wiktionary.org entries, with proper CJK fonts and tidy hanzi/hanja/kanji boxes.",
+  "permissions": [
+    "storage"
+  ],
+  "host_permissions": [
+    "https://en.wiktionary.org/*"
+  ],
+  "action": {
+    "default_title": "Wiktionary Clean: click to turn off/on"
+  },
+  "options_ui": {
+    "page": "options.html",
+    "open_in_tab": true
+  },
+  "background": {
+    "service_worker": "background.js"
+  },
+  "content_scripts": [
+    {
+      "matches": [
+        "https://en.wiktionary.org/wiki/*",
+        "https://en.wiktionary.org/w/index.php*"
+      ],
+      "js": [
+        "settings.js",
+        "look.js",
+        "boot.js"
+      ],
+      "run_at": "document_start"
+    },
+    {
+      "matches": [
+        "https://en.wiktionary.org/wiki/*",
+        "https://en.wiktionary.org/w/index.php*"
+      ],
+      "css": [
+        "clean.css"
+      ],
+      "js": [
+        "clean.js"
+      ],
+      "run_at": "document_end"
+    }
+  ],
+  "browser_specific_settings": {
+    "gecko": {
+      "id": "wiktionary-clean@local",
+      "strict_min_version": "121.0"
+    }
+  }
+}

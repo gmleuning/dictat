@@ -1,0 +1,164 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Wiktionary Clean settings</title>
+<link rel="stylesheet" href="options.css">
+</head>
+<body>
+<div class="shell">
+  <main class="settings">
+    <header class="top">
+      <h1>Wiktionary Clean</h1>
+      <label class="switch"><input type="checkbox" data-key="enabled"><span>Enabled</span></label>
+    </header>
+    <p class="lede">Changes save as you make them. Colours, fonts and sizes update open Wiktionary tabs straight away; options marked <span class="rl">reload</span> apply the next time a page loads.</p>
+
+    <section class="card">
+      <h2>Colour</h2>
+      <div class="field">
+        <div class="label">Accent (links)</div>
+        <div class="swatches" data-swatches="accent"></div>
+        <div class="hexrow">
+          <input type="color" data-color-for="accent" aria-label="Pick accent colour">
+          <input type="text" class="hex" data-key="accent" spellcheck="false" maxlength="7" aria-label="Accent hex code">
+          <span class="contrast" data-contrast="accent"></span>
+        </div>
+      </div>
+      <div class="field">
+        <div class="label">Background</div>
+        <div class="swatches" data-swatches="bg"></div>
+        <div class="hexrow">
+          <input type="color" data-color-for="bg" aria-label="Pick background colour">
+          <input type="text" class="hex" data-key="bg" spellcheck="false" maxlength="7" aria-label="Background hex code">
+        </div>
+      </div>
+      <label class="check"><input type="checkbox" data-key="autoDark"> Switch to dark when Wiktionary or the system is in dark mode</label>
+      <div class="field">
+        <div class="label">Language headings</div>
+        <div class="seg" data-key="h2Style">
+          <button value="rule">Heavy rule</button><button value="hairline">Hairline</button><button value="none">None</button>
+        </div>
+      </div>
+    </section>
+
+    <section class="card">
+      <h2>Type</h2>
+      <div class="field">
+        <label class="label" for="bodyFont">Body font</label>
+        <select id="bodyFont" data-key="bodyFont" data-fontslot="body"></select>
+      </div>
+      <div class="field">
+        <div class="label">Chinese, Japanese, Korean (default)</div>
+        <div class="seg" data-key="cjkStyle"><button value="sans">Noto Sans</button><button value="serif">Noto Serif</button></div>
+      </div>
+      <div class="fontslots">
+        <label class="label" for="koFont">Korean</label><select id="koFont" data-key="koFont" data-fontslot="cjk"></select>
+        <label class="label" for="zhFont">Chinese</label><select id="zhFont" data-key="zhFont" data-fontslot="cjk"></select>
+        <label class="label" for="jaFont">Japanese</label><select id="jaFont" data-key="jaFont" data-fontslot="cjk"></select>
+      </div>
+      <details class="addfont" id="addfont">
+        <summary>Add a font</summary>
+        <div class="seg" id="fontSource"><button value="google" aria-pressed="true">Google Fonts</button><button value="local" aria-pressed="false">On this computer</button></div>
+        <div class="hexrow">
+          <input type="text" id="fontName" list="localFonts" placeholder="Family name, e.g. Nanum Myeongjo" spellcheck="false">
+          <datalist id="localFonts"></datalist>
+          <button type="button" id="fontAdd">Add</button>
+        </div>
+        <button type="button" id="fontBrowse" class="linkish" hidden>Browse installed fonts…</button>
+        <p class="hint" id="fontHint">Any family from fonts.google.com. Weights and italics are picked up automatically where the family has them.</p>
+        <p class="sample" id="fontSample" hidden>The quick brown fox · 휴식 · 休息 · きゅうそく</p>
+        <ul class="fontlist" id="fontList"></ul>
+      </details>
+      <label class="check"><input type="checkbox" data-key="hantFont"> Taiwan-standard glyphs (TC) for traditional Chinese</label>
+      <label class="check"><input type="checkbox" data-key="webfonts"> Load fonts from Google Fonts</label>
+      <p class="hint">Off: only fonts installed on this computer are used. On: Google sees which Wiktionary pages request fonts.</p>
+      <div class="field range"><label class="label" for="fontSize">Text size</label><input id="fontSize" type="range" min="13" max="22" step="1" data-key="fontSize"><output data-out="fontSize"></output></div>
+      <div class="field range"><label class="label" for="lineHeight">Line spacing</label><input id="lineHeight" type="range" min="1.4" max="2.1" step="0.05" data-key="lineHeight"><output data-out="lineHeight"></output></div>
+      <div class="field range"><label class="label" for="width">Column width</label><input id="width" type="range" min="560" max="1040" step="20" data-key="width"><output data-out="width"></output></div>
+      <div class="field range"><label class="label" for="boxCharSize">Character box size</label><input id="boxCharSize" type="range" min="18" max="40" step="1" data-key="boxCharSize"><output data-out="boxCharSize"></output></div>
+    </section>
+
+    <section class="card">
+      <h2>Languages <span class="rl">reload</span></h2>
+      <div class="field">
+        <label class="label" for="preferred">Languages that start open</label>
+        <textarea id="preferred" data-key="preferred" rows="5" spellcheck="false"></textarea>
+        <p class="hint">One per line, as Wiktionary names them (e.g. Korean, Middle Korean, Translingual).</p>
+      </div>
+      <label class="check"><input type="checkbox" data-key="moveToTop"> Move these languages to the top, in this order</label>
+      <div class="field inline"><label class="label" for="collapseAbove">Hide the others (pick them from Contents) when a page has more than</label><input id="collapseAbove" type="number" min="0" max="99" data-key="collapseAbove"><span>languages</span></div>
+      <div class="field">
+        <div class="label">Contents box</div>
+        <div class="seg" data-key="toc"><button value="multi">Two or more languages</button><button value="always">Always</button><button value="never">Never</button></div>
+      </div>
+    </section>
+
+    <section class="card">
+      <h2>Sections</h2>
+      <div class="label">Hide</div>
+      <div class="checks">
+        <label class="check"><input type="checkbox" data-key="hideTranslations"> Translations</label>
+        <label class="check"><input type="checkbox" data-key="hideEtyTree"> Etymology trees</label>
+        <label class="check"><input type="checkbox" data-key="hideDescendants"> Descendants</label>
+        <label class="check"><input type="checkbox" data-key="hideAnagrams"> Anagrams</label>
+      </div>
+      <div class="field">
+        <div class="label">Quotations</div>
+        <div class="seg" data-key="quoteMode"><button value="open">Open</button><button value="collapsed">Collapsed</button><button value="hidden">Hidden</button></div>
+      </div>
+      <div class="field">
+        <div class="label">Quotation layout <span class="rl">reload</span></div>
+        <div class="seg" data-key="quoteStyle"><button value="compact">Compact</button><button value="full">As written</button></div>
+        <p class="hint">Compact: the passage, then "— Author, Title (date)"; the full source opens from "source ▾".</p>
+      </div>
+      <div class="field">
+        <div class="label">Synonyms, antonyms, hyponyms under senses</div>
+        <div class="seg" data-key="nymsMode"><button value="open">Open</button><button value="collapsed">Collapsed</button><button value="hidden">Hidden</button></div>
+      </div>
+      <div class="field">
+        <div class="label">Etymology <span class="rl">reload</span></div>
+        <div class="seg" data-key="etyStyle"><button value="timeline">Timeline</button><button value="original">As written</button></div>
+        <p class="hint">Used for every language except Chinese and Korean.</p>
+      </div>
+      <label class="check"><input type="checkbox" data-key="abbrevPIE"> Shorten Proto-Indo-European to PIE <span class="rl">reload</span></label>
+      <div class="field">
+        <div class="label">Pronunciation <span class="rl">reload</span></div>
+        <label class="check"><input type="checkbox" data-key="audioOnly"> Audio only (drop IPA, rhymes, romanization tables)</label>
+        <label class="check"><input type="checkbox" data-key="forvo"> No audio: link to a Forvo search instead</label>
+      </div>
+      <label class="check"><input type="checkbox" data-key="cjkRomanization"> Keep romanizations in Chinese/Japanese/Korean term lists <span class="rl">reload</span></label>
+    </section>
+
+    <section class="card">
+      <h2>Korean · Naver <span class="rl">reload</span></h2>
+      <p class="hint">Uses en.dict.naver.com (Korean–English).</p>
+      <label class="check"><input type="checkbox" data-key="naverMissing"> Hangul word with no Wiktionary page: go to Naver</label>
+      <label class="check"><input type="checkbox" data-key="naverSearch"> Hangul search with no exact match: go to Naver</label>
+      <label class="check"><input type="checkbox" data-key="naverRedLinks"> Red links to Hangul words point to Naver</label>
+      <label class="check"><input type="checkbox" data-key="naverBanner"> Hangul page with no Korean entry: show a Naver link</label>
+    </section>
+
+    <section class="card">
+      <h2>Settings file</h2>
+      <div class="buttons">
+        <button type="button" id="export">Export…</button>
+        <button type="button" id="import">Import…</button>
+        <input type="file" id="importFile" accept="application/json,.json" hidden>
+        <button type="button" id="reset" class="quiet">Reset to defaults</button>
+      </div>
+      <p class="status" id="status" role="status"></p>
+    </section>
+  </main>
+
+  <aside class="preview">
+    <div class="preview-label">Preview</div>
+    <iframe src="preview.html" title="Preview"></iframe>
+  </aside>
+</div>
+<script src="settings.js"></script>
+<script src="look.js"></script>
+<script src="options.js"></script>
+</body>
+</html>
