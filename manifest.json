@@ -1,8 +1,8 @@
 {
   "manifest_version": 3,
-  "name": "Wiktionary Clean",
+  "name": "dictat",
   "version": "0.4.0",
-  "description": "A quiet reading view for en.wiktionary.org entries, with proper CJK fonts and tidy hanzi/hanja/kanji boxes.",
+  "description": "A quiet, fully tunable reading view for en.wiktionary.org: your colours, fonts and layout, etymology timelines, CJK character boxes, audio-only pronunciation, and Naver/Forvo shortcuts.",
   "permissions": [
     "storage"
   ],
@@ -10,7 +10,7 @@
     "https://en.wiktionary.org/*"
   ],
   "action": {
-    "default_title": "Wiktionary Clean: click to turn off/on"
+    "default_title": "dictat: click to turn off/on"
   },
   "options_ui": {
     "page": "options.html",
@@ -48,7 +48,7 @@
   ],
   "browser_specific_settings": {
     "gecko": {
-      "id": "wiktionary-clean@local",
+      "id": "dictat@local",
       "strict_min_version": "121.0"
     }
   }

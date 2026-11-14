@@ -1,4 +1,4 @@
-// Wiktionary Clean: rebuilds an entry page into a single quiet column.
+// dictat: rebuilds an entry page into a single quiet column.
 // Strategy: MOVE (never clone) Wiktionary's content nodes into a new wrapper,
 // so the site's own scripts (show/hide toggles, popups) keep working.
 // Every transform is optional: when a pattern isn't found, the content is left
@@ -627,7 +627,7 @@
         for (const s of sections) {
           if (NO_ETY.has(s.lang)) continue;
           for (const sub of $$(".wkc-sub[data-sec='etymology']", s.el)) {
-            try { ETY.build(sub, S, s.lang); } catch (e) { console.warn("[Wiktionary Clean] etymology skipped", e); }
+            try { ETY.build(sub, S, s.lang); } catch (e) { console.warn("[dictat] etymology skipped", e); }
           }
         }
       }
@@ -829,7 +829,7 @@
       D.body.append(sw);
 
     } catch (err) {
-      console.error("[Wiktionary Clean] transform failed; showing the normal page.", err);
+      console.error("[dictat] transform failed; showing the normal page.", err);
       root.classList.remove("wkc");
       $$(".wkc-hidden").forEach((el) => el.classList.remove("wkc-hidden"));
       if (content.parentNode !== restore.parent) restore.parent.insertBefore(content, restore.next);

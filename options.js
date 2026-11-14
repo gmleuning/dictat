@@ -196,7 +196,7 @@
   $("#export").addEventListener("click", () => {
     const blob = new Blob([JSON.stringify(S, null, 2)], { type: "application/json" });
     const a = document.createElement("a");
-    a.href = URL.createObjectURL(blob); a.download = "wiktionary-clean-settings.json"; a.click();
+    a.href = URL.createObjectURL(blob); a.download = "dictat-settings.json"; a.click();
     setTimeout(() => URL.revokeObjectURL(a.href), 1000);
   });
   $("#import").addEventListener("click", () => $("#importFile").click());
