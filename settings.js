@@ -34,6 +34,8 @@ var WKC_DEFAULTS = {
   // CJK
   boxCharSize: 26,
   cjkRomanization: true,    // keep romanizations in inline CJK term lists
+  // missing pages
+  lowercaseMissing: true,   // missing page with capitals -> the all-lowercase entry, if it exists
   // Korean / Naver
   naverMissing: true,       // missing Hangul page -> Naver
   naverBanner: true,        // Hangul page without a Korean section -> show a Naver link

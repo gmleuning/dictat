@@ -846,6 +846,22 @@
       if ($(".noarticletext")) {
         const t = pageTitle();
         if (S.naverMissing && HANGUL_ONLY.test(t)) { leaving = true; location.replace(fill(WKC_NAVER, t)); return; }
+        // Missing page with capitals -> the all-lowercase entry, if there is one
+        const lower = t.toLowerCase();
+        if (S.lowercaseMissing && lower !== t && document.body.classList.contains("ns-0")) {
+          leaving = true;
+          const api = "/w/api.php?action=query&format=json&formatversion=2&titles=" + encodeURIComponent(lower);
+          fetch(api, { credentials: "omit" })
+            .then((r) => r.json())
+            .then((j) => {
+              const pg = j && j.query && j.query.pages && j.query.pages[0];
+              if (pg && !pg.missing && !pg.invalid) {
+                location.replace("/wiki/" + encodeURIComponent(lower.replace(/ /g, "_")) + location.hash);
+              } else unboot();
+            })
+            .catch(() => unboot());
+          return;
+        }
         return;
       }
       if (!$("#mw-content-text .mw-parser-output")) return;
