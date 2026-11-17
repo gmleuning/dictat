@@ -3,6 +3,12 @@
   "name": "dictat",
   "version": "0.4.0",
   "description": "A quiet, fully tunable reading view for en.wiktionary.org: your colours, fonts and layout, etymology timelines, CJK character boxes, audio-only pronunciation, and Naver/Forvo shortcuts.",
+  "icons": {
+    "16": "icons/icon-16.png",
+    "32": "icons/icon-32.png",
+    "48": "icons/icon-48.png",
+    "128": "icons/icon-128.png"
+  },
   "permissions": [
     "storage"
   ],
@@ -10,7 +16,11 @@
     "https://en.wiktionary.org/*"
   ],
   "action": {
-    "default_title": "dictat: click to turn off/on"
+    "default_title": "dictat: click to turn off/on",
+    "default_icon": {
+      "16": "icons/icon-16.png",
+      "32": "icons/icon-32.png"
+    }
   },
   "options_ui": {
     "page": "options.html",
